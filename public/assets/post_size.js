@@ -12,8 +12,13 @@ const postSize = (post) => {
                 i++;
             }
         } else {
+            const char = post[i];
+            if (char >= '\uD800' && char <= '\uDFFF') {
+                i += 2;
+            } else {
+                i++;
+            }
             count++;
-            i++;
         }
     }
 
