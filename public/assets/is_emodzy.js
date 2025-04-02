@@ -1,5 +1,3 @@
-const isEmodzy = (char) => {
-    return char >= '\uD800' && char <= '\uDFFF';
-}
+const isEmodzy = (char) => char >= '\uD800' && char <= '\uDFFF';
 
 export default isEmodzy;
