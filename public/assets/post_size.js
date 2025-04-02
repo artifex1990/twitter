@@ -1,3 +1,5 @@
+import isEmodzy from './is_emodzy.js';
+
 const postSize = (post) => {
     let count = 0;
     let i = 0;
@@ -12,8 +14,8 @@ const postSize = (post) => {
                 i++;
             }
         } else {
+            i += isEmodzy(post[i]) ? 2 : 1;
             count++;
-            i++;
         }
     }
 
