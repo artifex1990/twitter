@@ -11,6 +11,9 @@
       "mocha/prefer-arrow-callback": 2,
       "linebreak-style": 0
     },
+    "parserOptions": {
+        "ecmaVersion": 2021
+    },
     "plugins": [
         "mocha"
     ]

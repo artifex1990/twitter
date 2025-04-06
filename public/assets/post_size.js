@@ -1,4 +1,4 @@
-import isEmodzy from './is_emodzy.js';
+import isEmodzy from '../helpers/is_emodzy.js';
 
 const postSize = (post) => {
   let count = 0;
