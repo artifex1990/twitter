@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
+    <script src="index.js" defer></script>
+    <script src="js/swiped-events.js" defer></script>
 </head>
 <body>
     <main>
@@ -207,5 +209,59 @@
             </div>
         </div>
     </footer>
+
+    <section class="modal" id="register">
+        <div class="modal__wrapper">
+            <div class="container">
+                <div class="modal__content">
+                    <div class="modal__dash"></div>
+                    <h2 class="modal__title">Регистрация</h2>
+                    <form class="modal__form" action="#">
+                        <div class="modal__fields">
+                            <input class="modal__input error_field" type="email" placeholder="&nbsp;" name="email">
+                            <label class="modal__label" for="email">Электронная почта</label>
+                            <div class="modal__error">Адрес не валиден</div>
+                        </div>
+                        <div class="modal__fields">
+                            <input class="modal__input" type="password" placeholder="&nbsp;" name="password">
+                            <label class="modal__label" for="password">Пароль</label>
+                            <div class="modal__error"></div>
+                        </div>
+                        <div class="modal__fields">
+                            <input class="modal__input" type="password" placeholder="&nbsp;" name="repassword">
+                            <label class="modal__label" for="repassword">Повторите пароль</label>
+                            <div class="modal__error"></div>
+                        </div>
+                        <button class="button button-register">Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+        </div>  
+    </section>
+
+    <section class="modal" id="auth">
+        <div class="modal__wrapper">
+            <div class="container">
+                <div class="modal__content">
+                    <div class="modal__dash"></div>
+                    <h2 class="modal__title">Авторизация</h2>
+                    <form class="modal__form" action="#">
+                        <div class="modal__fields">
+                            <input class="modal__input" type="email" placeholder="&nbsp;" name="email">
+                            <label class="modal__label" for="email">Адрес электронной почты</label>
+                            <div class="modal__error"></div>
+                        </div>
+                        <div class="modal__fields">
+                            <input class="modal__input error_field" type="password" placeholder="&nbsp;" name="password">
+                            <label class="modal__label" for="password">Пароль</label>
+                            <div class="modal__error">Пароль не верный</div>
+                        </div>
+                        <button class="button button-register">Авторизоваться</button>
+                    </form>
+                </div>
+            </div>
+        </div>  
+    </section>
+
 </body>
 </html>
