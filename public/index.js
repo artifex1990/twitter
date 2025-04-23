@@ -1,3 +1,7 @@
+import { API_PICTURES, API_POSTS, API_STATISTIC } from './api/api_constant.js';
+import getData from './api/get_data.js';
+import convertTime from './assets/convert_time.js';
+import fixTime from './helpers/fix_time.js';
 import validateEmail from './helpers/validate_email.js';
 
 const authForm = document.querySelector('#auth .modal__form');
@@ -154,3 +158,96 @@ if (authForm) {
     handleAuthorization();
   });
 }
+
+async function renderMetrcis() {
+  const metrics = document.querySelector('.metrics');
+  metrics.innerHTML = '<h2>Загружаю контент!</h2>';
+
+  try {
+    const data = await getData(API_STATISTIC);
+    const { usersRegistr, writMessages, writToday } = data.statistic;
+    metrics.innerHTML = `
+      <div class="metric">
+          <h2 class="metric__title">${usersRegistr}</h2>
+          <div class="metric__description">Пользователей зарегистрировано</div>
+      </div>
+      <div class="metric">
+          <h2 class="metric__title">${writMessages}</h2>
+          <div class="metric__description">Сообщений написано</div>
+      </div>
+      <div class="metric">
+          <h2 class="metric__title">${writToday}</h2>
+          <div class="metric__description">Написано сегодня</div>
+      </div>
+    `;
+  } catch (error) {
+    metrics.innerHTML = `<h2 class="error">${error}</h2>`;
+  }
+}
+
+async function renderPosts() {
+  const messages = document.querySelector('.messages__posts');
+  messages.innerHTML = '<h2>Загружаю контент!</h2>';
+
+  const dataPosts = await getData(API_POSTS);
+  const dataPictures = await getData(API_PICTURES);
+
+  if (dataPosts instanceof Error) {
+    messages.innerHTML = `<h2 class="error">${dataPosts.message}</h2>`;
+    return;
+  }
+
+  messages.innerHTML = '';
+  dataPosts.messages.forEach((message) => {
+    const userAvatarUrl = dataPictures instanceof Error
+      ? '#'
+      : dataPictures.pictures
+        .find((picture) => picture.user_id === message.user_id)
+        .url;
+    messages.innerHTML += `
+      <div class="messages__wrapper">
+          <div class="messages__post">
+              <div class="messages__avatar">
+                  <img src="${userAvatarUrl}" alt="аватарка">
+              </div>
+              <div class="messages__info">
+                  <div class="message__user">
+                      <div class="messages__name">${message.name}</div>  
+                      <div class="messages__login"><a href="#">${message.mail}</a></div>  
+                      <div class="messages__time">${convertTime(fixTime(message.date))}</div>
+                  </div>
+                  <div class="messages__text">
+                      ${message.message}
+                      ${message.img_message ? `<img src="${message.img_message}" alt="картинка">` : ''}
+                  </div>
+                  <div class="messages__commands">
+                      <div class="messages__command">
+                          <a href="#">
+                              <img src="./logo/reply.svg" alt="репост">
+                          </a>
+                          <span>${message.quantityReposts}</span>
+                      </div>
+                      <div class="messages__command">
+                          <a href="#">
+                              <img src="./logo/like.svg" alt="лайк">
+                          </a>
+                          <span>${message.quantityLike}</span>
+                      </div>
+                      <div class="messages__command">
+                          <a href="#">
+                              <img src="./logo/share.svg" alt="поделиться">
+                          </a>
+                          <span>${message.quantityShare}</span>
+                      </div>
+                  </div>
+              </div>
+          </div> 
+      </div>
+    `;
+  });
+}
+
+(() => {
+  renderMetrcis();
+  renderPosts();
+})();
