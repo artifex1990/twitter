@@ -203,7 +203,7 @@ async function getMetrics() {
   return statistic;
 }
 
-async function renderMetrcis(data) {
+async function renderMetrics(data) {
   const metrics = document.querySelector('.metrics');
 
   try {
@@ -288,6 +288,21 @@ function plugLoading() {
   messagesText.innerHTML = '<h2 class="loading">Загружаю контент!</h2>';
 }
 
+function updateTimeMessages() {
+  const minuteInterval = 60 * 1000;
+  setInterval(async () => {
+    const messages = await getMessages();
+    const messagePosts = document.querySelectorAll('.messages__post');
+    messagePosts.forEach((p) => {
+      const post = p;
+      const user = messages.find((el) => el.mail === post.querySelector('.messages__login').textContent);
+      if (user) {
+        post.querySelector('.messages__time').textContent = convertTime(fixTime(user.date));
+      }
+    });
+  }, minuteInterval);
+}
+
 document.querySelector('#new-message').addEventListener('input', (e) => {
   e.target.style.height = 'auto';
   e.target.style.height = `${e.target.scrollHeight}px`;
@@ -300,6 +315,7 @@ document.querySelector('#new-message').addEventListener('input', (e) => {
 
 (async () => {
   plugLoading();
-  renderMetrcis(await getMetrics());
+  renderMetrics(await getMetrics());
   renderPosts(await getMessages());
+  updateTimeMessages();
 })();
