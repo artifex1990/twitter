@@ -1,7 +1,7 @@
 import declitions from '../helpers/declination.js';
 import isDate from '../helpers/is_date.js';
 
-const convertTime = (postDate, currentDate) => {
+const convertTime = (postDate, currentDate = new Date(Date.now())) => {
   if (!isDate(postDate) || !isDate(currentDate)) {
     return '';
   }
