@@ -26,5 +26,8 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-mocha": "^10.5.0",
     "mocha": "^11.1.0"
+  },
+  "dependencies": {
+    "sinon": "^20.0.0"
   }
 }

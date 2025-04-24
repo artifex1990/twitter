@@ -1,11 +1,15 @@
 import { API_PICTURES, API_POSTS, API_STATISTIC } from './api/api_constant.js';
 import getData from './api/get_data.js';
 import convertTime from './assets/convert_time.js';
+import postSize from './assets/post_size.js';
 import fixTime from './helpers/fix_time.js';
 import validateEmail from './helpers/validate_email.js';
+import updateProgress from './assets/circle_progressbar.js';
 
 const authForm = document.querySelector('#auth .modal__form');
 const registerForm = document.querySelector('#register .modal__form');
+const messagesSymbols = document.querySelector('.progress-text');
+const maxMessagesSymbols = 400;
 
 function resetErrors(modalId) {
   const errorFields = document.querySelectorAll(`${modalId} .error_field`);
@@ -159,13 +163,51 @@ if (authForm) {
   });
 }
 
-async function renderMetrcis() {
+async function getMessages() {
+  const [dataPosts, dataPictures] = await new Promise((res) => {
+    setTimeout(async () => {
+      const posts = await getData(API_POSTS);
+      const pictures = await getData(API_PICTURES);
+      res([posts, pictures]);
+    }, 2000);
+  });
+
+  if (dataPosts instanceof Error) {
+    return dataPosts;
+  }
+
+  dataPosts.messages.map((m) => {
+    const message = m;
+    message.url = dataPictures instanceof Error
+      ? '#'
+      : dataPictures.pictures
+        .find((picture) => picture.user_id === message.user_id)
+        .url;
+
+    return message;
+  });
+
+  return dataPosts.messages;
+}
+
+async function getMetrics() {
+  const [statistic] = await new Promise(
+    (res) => {
+      setTimeout(async () => {
+        const data = await getData(API_STATISTIC);
+        res([data.statistic]);
+      }, 2000);
+    },
+  );
+
+  return statistic;
+}
+
+async function renderMetrcis(data) {
   const metrics = document.querySelector('.metrics');
-  metrics.innerHTML = '<h2>Загружаю контент!</h2>';
 
   try {
-    const data = await getData(API_STATISTIC);
-    const { usersRegistr, writMessages, writToday } = data.statistic;
+    const { usersRegistr, writMessages, writToday } = data;
     metrics.innerHTML = `
       <div class="metric">
           <h2 class="metric__title">${usersRegistr}</h2>
@@ -185,30 +227,21 @@ async function renderMetrcis() {
   }
 }
 
-async function renderPosts() {
+function renderPosts(data) {
   const messages = document.querySelector('.messages__posts');
-  messages.innerHTML = '<h2>Загружаю контент!</h2>';
 
-  const dataPosts = await getData(API_POSTS);
-  const dataPictures = await getData(API_PICTURES);
-
-  if (dataPosts instanceof Error) {
-    messages.innerHTML = `<h2 class="error">${dataPosts.message}</h2>`;
+  if (data instanceof Error) {
+    messages.innerHTML = `<h2 class="error">${data.message}</h2>`;
     return;
   }
 
   messages.innerHTML = '';
-  dataPosts.messages.forEach((message) => {
-    const userAvatarUrl = dataPictures instanceof Error
-      ? '#'
-      : dataPictures.pictures
-        .find((picture) => picture.user_id === message.user_id)
-        .url;
+  data.forEach((message) => {
     messages.innerHTML += `
       <div class="messages__wrapper">
           <div class="messages__post">
               <div class="messages__avatar">
-                  <img src="${userAvatarUrl}" alt="аватарка">
+                  <img src="${message.url}" alt="аватарка">
               </div>
               <div class="messages__info">
                   <div class="message__user">
@@ -247,7 +280,26 @@ async function renderPosts() {
   });
 }
 
-(() => {
-  renderMetrcis();
-  renderPosts();
+function plugLoading() {
+  const metrics = document.querySelector('.metrics');
+  metrics.innerHTML = '<h2 class="loading white">Загружаю контент!</h2>';
+
+  const messagesText = document.querySelector('.messages__posts');
+  messagesText.innerHTML = '<h2 class="loading">Загружаю контент!</h2>';
+}
+
+document.querySelector('#new-message').addEventListener('input', (e) => {
+  e.target.style.height = 'auto';
+  e.target.style.height = `${e.target.scrollHeight}px`;
+  if (messagesSymbols) {
+    const ps = postSize(e.target.value);
+    messagesSymbols.textContent = ps;
+    updateProgress(ps, maxMessagesSymbols);
+  }
+});
+
+(async () => {
+  plugLoading();
+  renderMetrcis(await getMetrics());
+  renderPosts(await getMessages());
 })();
