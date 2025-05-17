@@ -42,6 +42,7 @@ export default function Metrics() {
 
   useEffect(() => {
     try {
+      setIsLoading(true);
       getDataMetrics();
     } catch (err) {
       setError(err);

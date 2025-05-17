@@ -1,4 +1,5 @@
 import Banner from '../../Banner/Banner';
+import Messages from '../../Messages/Messages';
 import Metrics from '../../Metrics/Metrics';
 
 function MainLayout() {
@@ -7,10 +8,7 @@ function MainLayout() {
       <main>
         <Banner />
         <Metrics />
-        <section className="messages">
-          <h2 className="messages__title">Последние сообщения</h2>
-          <div className="messages__posts" />
-        </section>
+        <Messages />
 
         <section className="add__messages">
           <div className="container">
