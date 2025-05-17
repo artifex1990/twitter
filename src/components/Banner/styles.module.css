@@ -1,0 +1,46 @@
+.banner {
+  width: 100%;
+}
+
+.banner__logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.banner__title {
+  margin-top: 22px;
+  font-weight: 700;
+  font-size: 32px;
+  color: #000;
+  text-align: center;
+}
+
+.banner__register {
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.banner__slides {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.banner__slide {
+  width: 100%;
+}
+
+.banner__img {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--container-padding-inline);
+}

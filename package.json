@@ -18,6 +18,7 @@
     "test": "npx mocha tests",
     "lint": "npx eslint .",
     "lint-fix": "npx eslint . --fix",
+    "dev": "vite",
     "build": "vite build"
   },
   "devDependencies": {

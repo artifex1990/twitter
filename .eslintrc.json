@@ -18,7 +18,11 @@
     "sourceType": "module"
   },
   "rules": {
-    "import/extensions": ["error", "ignorePackages", { "js": "always" }],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      { "js": "never", "jsx": "never" }
+    ],
     "prefer-arrow-callback": 0,
     "mocha/prefer-arrow-callback": 2,
     "linebreak-style": 0,
@@ -31,7 +35,11 @@
       {
         "hoist": "never"
       }
-    ]
+    ],
+    "react/prop-types": "off",
+    "no-restricted-syntax": "off",
+    "guard-for-in": "off",
+    "react/jsx-one-expression-per-line": "off"
   },
 
   "extends": [

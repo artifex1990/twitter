@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import validateEmail from '../public/helpers/validate_email.js';
+import validateEmail from '../public/helpers/validate_email';
 
 describe('Функция замены ссылок в тексте', function () {
   it('валидный email: example@example.com', function () {
