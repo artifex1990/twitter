@@ -12,7 +12,12 @@ export default function Messages() {
     try {
       setIsLoading(true);
       const data = await getMessages();
-      setMessages(data);
+      setMessages(
+        data.map((message) => ({
+          ...message,
+          date: convertTime(fixTime(message.date)),
+        }))
+      );
     } catch (error) {
       setErrorMessages(error);
     } finally {
@@ -22,6 +27,12 @@ export default function Messages() {
 
   useEffect(() => {
     getMess();
+
+    const minuteInterval = setInterval(async () => {
+      await getMess();
+    }, 60000);
+
+    return () => clearInterval(minuteInterval);
   }, []);
 
   return (
@@ -44,9 +55,7 @@ export default function Messages() {
                   <div className={styles.messages__login}>
                     <a href="#">{message.mail}</a>
                   </div>
-                  <div className={styles.messages__time}>
-                    {convertTime(fixTime(message.date))}
-                  </div>
+                  <div className={styles.messages__time}>{message.date}</div>
                 </div>
                 <div className={styles.messages__text}>
                   {message.message}

@@ -77,29 +77,6 @@ html {
   padding: 0 var(--container-padding-inline);
 }
 
-
-
-.footer {
-  width: 100%;
-  margin-bottom: 31px;
-}
-
-.footer__title {
-  margin-top: 22px;
-  font-weight: 700;
-  font-size: 32px;
-  color: #000;
-  text-align: center;
-}
-
-.footer__register {
-  width: 100%;
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -202,77 +179,4 @@ html {
 
 .error {
   color: var(--error-color);
-}
-
-.add__messages-content {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  gap: 5px;
-  min-height: 170px;
-  max-height: 210px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 15px;
-}
-
-.add__messages-content:focus-within {
-  border: 2px solid #0057ff;
-}
-
-.add__messages-text {
-  width: 100%;
-  resize: none;
-  border: none;
-}
-
-.add__messages-text:focus {
-  outline: none;
-}
-
-.add__messages-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.add__messages-file-picture {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.add__messages-picture {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border: 1px solid #0057ff;
-  border-radius: 5px;
-  width: 36px;
-  height: 36px;
-}
-
-.add__messages-submit {
-  border: none;
-  font-weight: 400;
-  font-size: 14px;
-  color: #fff;
-  background: #0057ff;
-  border-radius: 5px;
-  padding: 10px 50px;
-  cursor: pointer;
-}
-
-.add__messages-progress {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.add__messages-picture img {
-  width: 20px;
-  height: 20px;
 }
