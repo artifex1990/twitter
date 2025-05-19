@@ -1,132 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./css/modern-normalize.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/circle-progressbar.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="js/swiped-events.js" type="module"></script>
-    <script src="index.js" type="module"></script>
-</head>
-<body>
-    <main>
-        <section class="banner">
-            <div class="container">
-                <div class="banner__logo">
-                    <img src="./logo/logo.svg" alt="логотип">
-                </div>
-                <h1 class="banner__title">Оставайся на связи с друзьями, даже когда их нет рядом</h1>
-                <div class="banner__register">
-                    <button class="button button-register">Зарегистрироваться</button>
-                    <button class="button">Войти</button>
-                </div>
-            </div>
-            <div class="banner__slides">
-                <div class="banner__slide">
-                    <img src="./img/slide_1.jpg" alt="картинка 1">
-                </div>
-            </div>
-        </section>
-        <section class="metrics">
-        </section>
-        <section class="messages">
-            <h2 class="messages__title">Последние сообщения</h2>
-            <div class="messages__posts"></div>
-        </section>
-        
-        <section class="add__messages">
-            <div class="container">
-                <form class="add__messages-form" action="#">
-                    <div class="add__messages-content">
-                        <textarea class="add__messages-text" name="new-message" id="new-message" rows="5"></textarea>
-                        <div class="add__messages-buttons">
-                            <div class="add__messages-file-picture">
-                                <input type="file" accept="image/*" id="file-images" class="add__messages-input" hidden>
-                                <label class="add__messages-picture" for="file-images"><img src="./logo/photo.svg" alt=""></label>
-                            </div>
-                            <div class="add__messages-progress">
-                                <div class="progress-container">
-                                    <svg class="progress-circle" viewBox="0 0 100 100">
-                                        <circle class="progress-circle-bg" cx="50" cy="50" r="45" />
-                                        <circle class="progress-circle-fill" cx="50" cy="50" r="45" />
-                                    </svg>
-                                    <div class="progress-text">0</div>
-                                </div>
-                                <button class="add__messages-submit">Отправить</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
-    </main>
-    <footer class="footer">
-        <div class="container">
-            <h1 class="footer__title">Зарегистрируйтесь и узнайте обо всём первым</h1>
-            <div class="footer__register">
-                <button class="button button-register">Зарегистрироваться</button>
-                <button class="button">Войти</button>
-            </div>
-        </div>
-    </footer>
-
-    <section class="modal" id="register">
-        <div class="modal__wrapper">
-            <div class="container">
-                <div class="modal__content">
-                    <div class="modal__dash"></div>
-                    <h2 class="modal__title">Регистрация</h2>
-                    <form class="modal__form" action="#">
-                        <div class="modal__fields">
-                            <input class="modal__input" type="email" placeholder="&nbsp;" name="email" autocomplete="username">
-                            <label class="modal__label" for="email">Электронная почта</label>
-                            <div class="modal__error"></div>
-                        </div>
-                        <div class="modal__fields">
-                            <input class="modal__input" type="password" placeholder="&nbsp;" name="password" autocomplete="new-password">
-                            <label class="modal__label" for="password">Пароль</label>
-                            <div class="modal__error"></div>
-                        </div>
-                        <div class="modal__fields">
-                            <input class="modal__input" type="password" placeholder="&nbsp;" name="repassword" autocomplete="new-password">
-                            <label class="modal__label" for="repassword">Повторите пароль</label>
-                            <div class="modal__error"></div>
-                        </div>
-                        <button class="button button-register">Зарегистрироваться</button>
-                    </form>
-                </div>
-            </div>
-        </div>  
-    </section>
-
-    <section class="modal" id="auth">
-        <div class="modal__wrapper">
-            <div class="container">
-                <div class="modal__content">
-                    <div class="modal__dash"></div>
-                    <h2 class="modal__title">Авторизация</h2>
-                    <form class="modal__form" action="#">
-                        <div class="modal__fields">
-                            <input class="modal__input" type="email" placeholder="&nbsp;" name="email" autocomplete="username">
-                            <label class="modal__label" for="email">Адрес электронной почты</label>
-                            <div class="modal__error"></div>
-                        </div>
-                        <div class="modal__fields">
-                            <input class="modal__input" type="password" placeholder="&nbsp;" name="password" autocomplete="password">
-                            <label class="modal__label" for="password">Пароль</label>
-                            <div class="modal__error"></div>
-                        </div>
-                        <button class="button button-register">Авторизоваться</button>
-                    </form>
-                </div>
-            </div>
-        </div>  
-    </section>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script type="module" crossorigin src="/assets/index-DXBrgL_v.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CDmwiaWM.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
